@@ -1,7 +1,11 @@
 import { Component, inject } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import {
+  FormBuilder,
+  FormControl,
+  FormGroup,
+  Validators,
+} from '@angular/forms';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-
 
 @Component({
   selector: 'app-home',
@@ -12,36 +16,31 @@ export class HomeComponent {
   formValue!: FormGroup;
   private fb: FormBuilder = inject(FormBuilder);
   private endpoint = 'https://modelslab.com/api/v6/realtime/text2img';
- 
+
   response = {
     success: '',
     error: '',
     isLoading: false,
     imgUrl: '',
-    prompt : ""
+    prompt: '',
   };
 
   // private LangApi = inject(LanguageApiService);
 
-  constructor(private http : HttpClient) {
+  constructor(private http: HttpClient) {
     this.formValue = this.fb.group({
-      text: new FormControl(null ,[Validators.required]),
+      text: new FormControl(null, [Validators.required]),
     });
-
-
   }
 
   submitForm(values: FormGroup) {
-
     this.response = {
-      ...this.response ,
-      isLoading : true
-    }
+      ...this.response,
+      isLoading: true,
+    };
     const valueF = this.formValue.value;
     const prompt = valueF.text as string;
 
-    
-     
     this.response = {
       ...this.response,
       isLoading: true,
@@ -52,7 +51,7 @@ export class HomeComponent {
     });
 
     const body = JSON.stringify({
-      key: 'r5dBn3vhbH54YIfuNYJdIFZCWMi0ntXuMX0BqY2Z82tOrLuFtxdfE99eQRDd',
+      key: '9xM3ZW7ErbzlGCkzDLol5tqZvqpWqdsb1L8kKX5vZOyRdepT4FS16A5cHJzh',
       prompt: prompt,
       negative_prompt: 'good quality',
       width: '512',
@@ -71,9 +70,18 @@ export class HomeComponent {
       })
       .subscribe((res) => {
         const resp = res as any;
-        if (resp.status == 'success' && resp.output != null) {
+        if (resp.status == 'error') {
+          this.response = {
+            isLoading: false,
+            success: '',
+            error:
+              "Sorry for incovinience , w're in service mode due to limited resources...",
+            prompt: '',
+            imgUrl: '',
+          };
+        } else if (resp.status == 'success' && resp.output != null) {
           const urls = resp.output as string[];
-          console.log(urls)
+
           this.response = {
             ...this.response,
             isLoading: false,
@@ -82,7 +90,6 @@ export class HomeComponent {
             imgUrl: urls[0],
           };
         } else if (resp.status == 'processing') {
-          
           this.response = {
             ...this.response,
             isLoading: true,
@@ -92,10 +99,5 @@ export class HomeComponent {
         }
         console.log(this.response);
       });
-
-  
-
-      
-
   }
 }
