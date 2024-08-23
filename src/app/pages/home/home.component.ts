@@ -51,7 +51,7 @@ export class HomeComponent {
     });
 
     const body = JSON.stringify({
-      key: '9xM3ZW7ErbzlGCkzDLol5tqZvqpWqdsb1L8kKX5vZOyRdepT4FS16A5cHJzh',
+      key: 'QbySrAuUumj9I14dPxLoiBNpsI42nKgfjRtfrqykH7gMS5VFoYHt8SWtJD0c',
       prompt: prompt,
       negative_prompt: 'good quality',
       width: '512',
