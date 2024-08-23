@@ -1,0 +1,64 @@
+<section class="container mt-3">
+  <q class="mt-4 text-dark fs-5">
+    With just a few words, create stunning images.
+    Type your thoughts, and watch them transform into unique visuals crafted just for you.
+  </q>
+
+  <hr />
+
+  <section *ngIf="response.error">
+    <section class="alert alert-danger">
+      <p>{{ response.error }}</p>
+      z
+    </section>
+  </section>
+
+  <section class="mt-5 mb-2">
+    <form
+      action=""
+      [formGroup]="formValue"
+      (ngSubmit)="submitForm(formValue.value)"
+      class="vstack gap-3"
+    >
+      <textarea
+        formControlName="text"
+        class="form-control"
+        placeholder="write a prompt to generate image for you ..."
+      ></textarea>
+      <p
+        class="form-text text-danger"
+        *ngIf="!formValue.get('text')?.valid && formValue.get('text')?.touched"
+      >
+        please provide any text to translate
+      </p>
+      <section>
+        <button [disabled]="!formValue.valid" class="btn btn-outline-success">
+          Generate image
+        </button>
+      </section>
+    </form>
+
+    <div *ngIf="response.isLoading" class="text-center">
+      <div class="spinner-border text-success" role="status">
+        <span class="visually-hidden">Loading...</span>
+      </div>
+    </div>
+    <section *ngIf="response.success">
+      <section class="alert alert-success mt-3">
+        <p>{{ response.success }}</p>
+      </section>
+    </section>
+
+    <div
+      *ngIf="response.imgUrl"
+      class="card col-11 col-lg-3 p-3 mx-auto mx-lg-0"
+    >
+      <img [src]="response.imgUrl" class="promp generated .." alt="..." />
+      <div class="card-body">
+        <p class="card-text">
+          {{ response.prompt }}
+        </p>
+      </div>
+    </div>
+  </section>
+</section>

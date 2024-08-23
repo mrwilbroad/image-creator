@@ -1,0 +1,8 @@
+{
+    "/api": {
+      "target": "https://api.pretrained.ai",
+      "secure": false,
+      "changeOrigin": true
+    }
+  }
+  

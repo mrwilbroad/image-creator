@@ -6,5 +6,12 @@ import { Component } from '@angular/core';
   styleUrl: './app.component.scss'
 })
 export class AppComponent {
-  title = 'language_detection';
+
+
+  title = 'Image Creator'
+
+
+  constructor(){
+    document.title = this.title
+  }
 }
