@@ -75,7 +75,7 @@ export class HomeComponent {
             isLoading: false,
             success: '',
             error:
-              "Sorry for incovinience , w're in service mode due to limited resources...",
+              "Sorry for incovinience , w're running out of service due to limited resources...",
             prompt: '',
             imgUrl: '',
           };
