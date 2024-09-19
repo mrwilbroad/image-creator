@@ -1,0 +1,17 @@
+<section *ngIf="AuthorQuote$|async as AuthorQ" class="container m-3 mx-auto">
+  <div class="d-flex justify-content-start align-items-center border rounded">
+    <img
+    *ngIf="AuthorQ.i"
+      src="AuthorQ.i"
+      class="card-img-top rounded-circle m-3 shadow"
+      style="width: 65px; height: 65px"
+
+    />
+    <section>
+       <section>
+        {{ AuthorQ.h }}
+       </section>
+      <button (click)="generateQuote()" type="button" class="btn btn-sm m-2 btn-outline-success">regenerate</button>
+    </section>
+  </div>
+</section>

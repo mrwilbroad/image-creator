@@ -70,6 +70,7 @@ export class HomeComponent {
       })
       .subscribe((res) => {
         const resp = res as any;
+        console.log(resp);
         if (resp.status == 'error') {
           this.response = {
             isLoading: false,

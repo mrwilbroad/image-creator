@@ -1,8 +1,12 @@
 <section class="container mt-3">
-  <q class="mt-4 text-dark fs-5">
+
+  <app-quote/>
+
+  <q class="mt-4 text-dark">
     With just a few words, create stunning images.
     Type your thoughts, and watch them transform into unique visuals crafted just for you.
   </q>
+
 
   <hr />
 
@@ -28,7 +32,7 @@
         class="form-text text-danger"
         *ngIf="!formValue.get('text')?.valid && formValue.get('text')?.touched"
       >
-        please provide any text to translate
+        {{ 'please provide any prompt message' }}
       </p>
       <section>
         <button [disabled]="!formValue.valid" class="btn btn-outline-success">

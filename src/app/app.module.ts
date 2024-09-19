@@ -7,11 +7,13 @@ import { HomeComponent } from './pages/home/home.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { provideHttpClient, withFetch, withInterceptors, withJsonpSupport } from '@angular/common/http';
 import { corseInterceptor } from './interceptors/corse/corse.interceptor';
+import { QuoteComponent } from './Component/quote/quote.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    HomeComponent
+    HomeComponent,
+    QuoteComponent
   ],
   imports: [
     BrowserModule,
